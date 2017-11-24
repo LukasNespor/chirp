@@ -4,7 +4,6 @@ import "./app.css";
 import {
   TextField,
   PrimaryButton,
-  Label,
   List,
   Spinner,
   SpinnerSize,
@@ -49,16 +48,17 @@ export default class App extends React.Component<{}, State> {
 
   render() {
     return (
-      <div className="main">
-        <h1>Chirp</h1>
-        <div>
-          <TextField placeholder="Your name.." onChanged={this.authorChanged} />
-          <TextField placeholder="Your message..." multiline={true} rows={3} onChanged={this.textChanged} />
-          <PrimaryButton onClick={this.sendPost} text="Send" />
+      <div>
+        <div className="topPanel">
+          <div className="header">
+            <h1>Chirp</h1>
+            <TextField placeholder="Your name..." value={this.state.author} onChanged={this.authorChanged} />
+            <TextField placeholder="Your message..." value={this.state.text} multiline={true} rows={3} onChanged={this.textChanged} />
+            <PrimaryButton onClick={this.sendPost} text="Send" />
+          </div>
         </div>
 
         <div className="posts">
-          <Label>Posts</Label>
           {this.state.loading &&
             <Spinner size={SpinnerSize.large} />
           }
